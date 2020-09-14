@@ -13,7 +13,9 @@ on:
       - master
     paths:
       - .config
-
+  watch:
+    types: started
+    
 jobs:
   build:
     runs-on: ubuntu-latest
