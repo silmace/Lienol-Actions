@@ -41,7 +41,7 @@ jobs:
       env: 
         REPO_URL: https://github.com/zhaozs125/Lienol-Actions
       run: git clone --depth 1 $REPO_URL openwrt-config
-
+    
     - name: Custom feeds file
       run: |
           cd openwrt
@@ -59,7 +59,10 @@ jobs:
           cd openwrt
           rm -f .config
           cp ../openwrt-config/.config .config
-          
+   
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
+    
     - name: Make Defconfig
       run: |
           cd openwrt
