@@ -91,9 +91,11 @@ jobs:
    
     - name: Upload firmware to cowtransfer
       run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "::set-env name=FIRMWARE::$PWD"
+        rm -rf ./artifact/
+        mkdir -p ./artifact/
+        find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
+        find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
+        cp .config ./artifact/
         curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+        ./transfer cow --block 2621440 -s --no-progress ./artifact/ 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
