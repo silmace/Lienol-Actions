@@ -62,8 +62,8 @@ jobs:
           rm -f .config
           cp ../openwrt-config/.config .config
    
-    #- name: SSH connection to Actions
-    #  uses: P3TERX/debugger-action@master
+  #- name: SSH connection to Actions
+  #  uses: P3TERX/debugger-action@master
     
     - name: Make Defconfig
       run: |
@@ -97,17 +97,3 @@ jobs:
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        
-    - name: Upload firmware to WeTransfer
-    - name: Assemble artifact
-      run: |
-          rm -rf ./artifact/
-          mkdir -p ./artifact/
-          find openwrt/bin/targets/ -name "*sysupgrade*bin*" | xargs -i mv -f {} ./artifact/
-          find openwrt/bin/targets/ -name "*combined*img*" | xargs -i mv -f {} ./artifact/
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@main
-      with:
-        name: OpenWrt firmware
-        path: ./artifact/
