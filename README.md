@@ -1,4 +1,4 @@
-# Lienol-Actions
+# Lienol-Actions for newifi3 d2
 基于Lienol大佬的固件云编译
 ----------
 个性化固件说明：
