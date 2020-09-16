@@ -34,7 +34,7 @@ jobs:
       
     - name: Clone Config
       env: 
-        REPO_URL: https://github.com/silmace/Lienol-Actions
+        REPO_URL: https://github.com/silmace/Lienol-Openwrt-Newifi3
       run: git clone --depth 1 $REPO_URL openwrt-config
     
     - name: Custom feeds file
