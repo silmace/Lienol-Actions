@@ -8,11 +8,6 @@
 name: lienol-1907
 
 on:
-  push:
-    branches: 
-      - master
-    paths:
-      - .config
   watch:
     types: started
     
