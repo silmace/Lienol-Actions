@@ -65,8 +65,8 @@ jobs:
           rm -f .config
           cp ../openwrt-config/.config .config
    
-  #- name: SSH connection to Actions
-  #  uses: P3TERX/debugger-action@master
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
     
     - name: Make Defconfig
       run: |
